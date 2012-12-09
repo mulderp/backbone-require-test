@@ -1,22 +1,40 @@
 define([
-  'jquery',
-  'underscore',
-  'backbone',
-  ], function($, _, Backbone) {
-    console.log("hello");
+'jquery',
+'underscore',
+'backbone'
+], function($, _, Backbone) {
 
-    var AppRouter = Backbone.Router.extend({
-      routes: {
-        'dashboard': 'showDashboard',
-        '*actions': 'defaultAction'
-      }
-    });
+	var initialize = function(){
 
-    var app_router = new AppRouter;
+		console.log("application init");
 
-    app_router.on('route:showDashboard', function() {
-      console.log("dashboard");
-    });
+		var AppRouter = Backbone.Router.extend({
 
-  });
+			routes: {
+				'dashboard': 'showDashboard', // matches http://example.com/#dashboard
+				'*actions': 'showMainpage'
+			},
 
+			showDashboard: function() {
+				console.log('show dashboard');
+			},
+
+			showMainpage: function() {
+				console.log('show mainpage');
+			}
+
+		});
+
+		// Initiate the router
+		var app_router = new AppRouter();
+
+		// Start Backbone history a necessary step for bookmarkable URL's
+		Backbone.history.start();
+
+	};
+
+	return {
+		initialize: initialize
+	};
+
+});
