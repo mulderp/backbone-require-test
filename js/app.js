@@ -45,7 +45,11 @@ define([
 		});
 
         var MetaItem = Backbone.Model.extend({
-          urlRoot : '/data/profile.json'
+          urlRoot : '/data/profile.json',
+          parse: function(response) {
+            console.log(response);
+              return response;
+          }
         });
 
 
