@@ -2,14 +2,12 @@ define([
 'jquery',
 'underscore',
 'backbone',
-'text!../templates/profileItem.html'
-], function($, _, Backbone, profileItemTemplate) {
+'text!../templates/simpleItem.html'
+], function($, _, Backbone, simpleItemTemplate) {
 
 	var initialize = function() {
 
 		console.log("application init");
-
-
 
 		// Router
 		var AppRouter = Backbone.Router.extend({
@@ -28,26 +26,34 @@ define([
 				// Clear page
 				$("#maincontent").html('');
 				// Show list
-				var foo = new CreativesView();
+				var simple = new SimpleItemsView();
+
+                var meta = new MetaItem();
+                var m = meta.fetch();
+                console.log(m.name);
 			}
 		});
 
 
 
 		// Model
-		var Creative = Backbone.Model.extend({
+		var SimpleItem = Backbone.Model.extend({
 			defaults: {
 				name: 'noname',
 				img: "/img/profile_dummy.jpg"
 			}
 		});
 
+        var MetaItem = Backbone.Model.extend({
+          urlRoot : '/data/profile.json'
+        });
+
 
 
 		// Collection
-		var CreativeCollection = Backbone.Collection.extend({
-			model: Creative,
-			url: 'data/creatives.json',
+		var SimpleItemCollection = Backbone.Collection.extend({
+			model: SimpleItem,
+			url: 'data/items.json',
 			parse: function(response) {
 				return response;
 			}
@@ -55,11 +61,11 @@ define([
 
 
 
-		// Item View for single creative
-		var CreativeView = Backbone.View.extend({
+		// Item View for single item
+		var SimpleItemView = Backbone.View.extend({
 			tagName: "article",
-			className: "creative-item-container",
-			template: profileItemTemplate,
+			className: "item-item-container",
+			template: simpleItemTemplate,
 
 			render: function () {
 				console.log('render');
@@ -71,14 +77,14 @@ define([
 
 
 
-		// List View for all creatives
-		var CreativesView = Backbone.View.extend({
+		// List View for all items
+		var SimpleItemsView = Backbone.View.extend({
 			el: $("#maincontent"),
 
 			initialize: function () {
 				console.log('init view');
 				var _this = this;
-				this.collection = new CreativeCollection();
+				this.collection = new SimpleItemCollection();
 				this.collection.bind("reset",function(){
 					_this.render();
 				});
@@ -96,10 +102,10 @@ define([
 			},
 
 			renderItem: function (item) {
-				var creativeView = new CreativeView({
+				var itemView = new SimpleItemView({
 					model: item
 				});
-				this.el.append(creativeView.render().el);
+				this.el.append(itemView.render().el);
 			}
 		});
 

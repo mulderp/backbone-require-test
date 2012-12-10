@@ -1,12 +1,11 @@
 body {
-	background: url('/img/background.jpg');
 }
 
 #maincontent {
     padding: 50px 0 0;
 }
 
-.creative-item-container {
+.item-item-container {
     border-radius: 3px 3px 3px 3px;
     box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.6);
     height: 194px;
@@ -15,30 +14,6 @@ body {
     float: left;
     position: relative;
     width: 218px;
-}
-
-.heart_corner span {
-    border-color: transparent #C40714 #C40714 transparent;
-    border-radius: 3px 3px 3px 3px;
-    border-style: solid;
-    border-width: 20px;
-    bottom: 0;
-    height: 0;
-    position: absolute;
-    right: 0;
-    width: 0;
-}
-
-.project_counter .small-triangle {
-    border-color: #C40714 #C40714 transparent transparent;
-    border-radius: 3px 3px 3px 3px;
-    border-style: solid;
-    border-width: 1.6rem;
-    height: 0;
-    position: absolute;
-    right: 0;
-    top: 0;
-    width: 0;
 }
 
 .mod-header {
