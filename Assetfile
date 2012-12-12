@@ -1,3 +1,4 @@
+require 'rake-pipeline-web-filters'
 
 output "public"
 
@@ -9,8 +10,16 @@ input "source" do
     concat "css/main.css"
   end
 
-  # Repeat for javascript files
+  match "css/*.sass" do
+    sass
+  end
+
   match "js/**/*.js" do
+    copy
+  end
+
+  match "js/**/*.coffee" do
+	coffee_script
     copy
   end
 
