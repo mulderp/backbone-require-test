@@ -28,13 +28,7 @@ define([
           console.log('show mainpage');
           var sidebar = new SidebarView();
 
-
-          $("#maincontent").html('<table><tbody id="overview"></tbody></table>');
-          var simple = new SimpleItemsView();
-
-          var meta = new MetaItem();
-          var m = meta.fetch();
-          console.log(m.name);
+          $("#maincontent").html(new SimpleItemsView().render().el);
         },
 
         showAddForm: function() {
