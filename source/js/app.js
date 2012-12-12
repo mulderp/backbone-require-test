@@ -3,8 +3,9 @@ define([
   'underscore',
   'backbone',
   'text!../templates/sidebar.html',
-  'text!../templates/simpleItem.html'
-  ], function($, _, Backbone, sidebarTemplate, simpleItemTemplate) {
+  'text!../templates/simpleItem.html',
+  'text!../templates/addItem.html'
+  ], function($, _, Backbone, sidebarTemplate, simpleItemTemplate, addItemTemplate) {
 
     var initialize = function() {
 
@@ -14,6 +15,7 @@ define([
       var AppRouter = Backbone.Router.extend({
         routes: {
           'dashboard': 'showDashboard', // matches http://example.com/#dashboard
+          'new': 'showAddForm',
           '*actions': 'showMainpage'
         },
 
@@ -27,12 +29,17 @@ define([
           var sidebar = new SidebarView();
 
 
-          $("#maincontent").html('');
+          $("#maincontent").html('<table><tbody id="overview"></tbody></table>');
           var simple = new SimpleItemsView();
 
           var meta = new MetaItem();
           var m = meta.fetch();
           console.log(m.name);
+        },
+
+        showAddForm: function() {
+          $("#maincontent").html('');
+          var addItemForm = new AddItemForm();
         }
       });
 
@@ -98,8 +105,8 @@ define([
 
       // List View for all items
       var SimpleItemsView = Backbone.View.extend({
-        el: $("#maincontent"),
-        tagName: "table",
+        el: $("#overview"),
+        tagName: "tbody",
 
         initialize: function () {
           console.log('init view');
@@ -117,6 +124,7 @@ define([
 
           var _this = this;
           _.each(this.collection.models, function (item) {
+            console.log(item);
             _this.renderItem(item);
           }, this);
         },
@@ -127,6 +135,18 @@ define([
           });
           this.el.append(itemView.render().el);
         }
+      });
+
+      var AddItemForm = Backbone.View.extend({
+        template: addItemTemplate,
+
+        render: function() {
+          $(this.el).html(_.template(this.template));
+        },
+        initialize: function() {
+          this.render();
+        }
+
       });
 
 
