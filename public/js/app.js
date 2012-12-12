@@ -99,6 +99,7 @@ define([
       // List View for all items
       var SimpleItemsView = Backbone.View.extend({
         el: $("#maincontent"),
+        tagName: "table",
 
         initialize: function () {
           console.log('init view');
