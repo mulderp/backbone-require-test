@@ -84,12 +84,10 @@ define([
 
 		// Item View for single item
 		var SimpleItemView = Backbone.View.extend({
-			tagName: "article",
-			className: "item-item-container",
+			tagName: "tr",
 			template: simpleItemTemplate,
 
 			render: function () {
-				console.log('render');
 				var tmpl = _.template(this.template);
 				$(this.el).html(tmpl(this.model.toJSON()));
 				return this;
@@ -101,6 +99,7 @@ define([
 		// List View for all items
 		var SimpleItemsView = Backbone.View.extend({
 			el: $("#maincontent"),
+            tagName: "table",
 
 			initialize: function () {
 				console.log('init view');

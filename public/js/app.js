@@ -2,8 +2,9 @@ define([
 'jquery',
 'underscore',
 'backbone',
+'text!../templates/sidebar.html',
 'text!../templates/simpleItem.html'
-], function($, _, Backbone, simpleItemTemplate) {
+], function($, _, Backbone, sidebarTemplate, simpleItemTemplate) {
 
 	var initialize = function() {
 
@@ -23,9 +24,10 @@ define([
 
 			showMainpage: function() {
 				console.log('show mainpage');
-				// Clear page
+                var sidebar = new SidebarView();
+
+
 				$("#maincontent").html('');
-				// Show list
 				var simple = new SimpleItemsView();
 
                 var meta = new MetaItem();
@@ -64,15 +66,28 @@ define([
 		});
 
 
+        var SidebarView = Backbone.View.extend({
+		  el: $("#sidebar"),
+          tagName: "div",
+          className: "sidebar",
+          template: sidebarTemplate,
+          render: function() {
+            var tmpl = _.template(this.template);
+            $(this.el).empty();
+            $(this.el).append(tmpl);
+            return this;
+          },
+          initialize: function() {
+            this.render();
+          }
+        });
 
 		// Item View for single item
 		var SimpleItemView = Backbone.View.extend({
-			tagName: "article",
-			className: "item-item-container",
+			tagName: "tr",
 			template: simpleItemTemplate,
 
 			render: function () {
-				console.log('render');
 				var tmpl = _.template(this.template);
 				$(this.el).html(tmpl(this.model.toJSON()));
 				return this;
@@ -84,6 +99,7 @@ define([
 		// List View for all items
 		var SimpleItemsView = Backbone.View.extend({
 			el: $("#maincontent"),
+            tagName: "table",
 
 			initialize: function () {
 				console.log('init view');
