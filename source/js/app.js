@@ -73,6 +73,7 @@ define([
           template: sidebarTemplate,
           render: function() {
             var tmpl = _.template(this.template);
+            $(this.el).empty();
             $(this.el).append(tmpl);
             return this;
           },
