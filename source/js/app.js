@@ -39,7 +39,7 @@ define([
 
 
 
-      // Model
+      // Models
       var Item = Backbone.Model.extend({
         defaults: {
           name: 'noname',
@@ -147,6 +147,7 @@ define([
       });
 
       var AddItemForm = Backbone.View.extend({
+        el: $("#maincontent"),
         template: addItemTemplate,
 
         render: function() {
