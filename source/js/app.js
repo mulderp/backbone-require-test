@@ -4,8 +4,9 @@ define([
   'backbone',
   'text!../templates/sidebar.html',
   'text!../templates/simpleItem.html',
-  'text!../templates/addItem.html'
-  ], function($, _, Backbone, sidebarTemplate, simpleItemTemplate, addItemTemplate) {
+  'text!../templates/addItem.html',
+  'text!../templates/overview.html'
+  ], function($, _, Backbone, sidebarTemplate, simpleItemTemplate, addItemTemplate, overviewTemplate) {
 
     var initialize = function() {
 
@@ -27,8 +28,7 @@ define([
         showMainpage: function() {
           console.log('show mainpage');
           var sidebar = new SidebarView();
-
-          $("#maincontent").html(new SimpleItemsView().render().el);
+          var items = new OverviewView()
         },
 
         showAddForm: function() {
@@ -40,7 +40,7 @@ define([
 
 
       // Model
-      var SimpleItem = Backbone.Model.extend({
+      var Item = Backbone.Model.extend({
         defaults: {
           name: 'noname',
           img: "/img/profile_dummy.jpg"
@@ -58,8 +58,8 @@ define([
 
 
       // Collection
-      var SimpleItemCollection = Backbone.Collection.extend({
-        model: SimpleItem,
+      var ItemCollection = Backbone.Collection.extend({
+        model: Item,
         url: 'data/items.json',
         parse: function(response) {
           return response;
@@ -69,7 +69,6 @@ define([
 
       var SidebarView = Backbone.View.extend({
         el: $("#sidebar"),
-        tagName: "div",
         className: "sidebar",
         template: sidebarTemplate,
         render: function() {
@@ -84,7 +83,7 @@ define([
       });
 
       // Item View for single item
-      var SimpleItemView = Backbone.View.extend({
+      var ItemView = Backbone.View.extend({
         tagName: "tr",
         template: simpleItemTemplate,
 
@@ -95,17 +94,33 @@ define([
         }
       });
 
+      var OverviewView = Backbone.View.extend({
+        el: $("#maincontent"),
+        template: overviewTemplate,
+        render: function() {
+          var tmpl = _.template(this.template);
+          $(this.el).empty();
+          $(this.el).append(tmpl);
+          return this;
+        },
+        initialize: function() {
+          console.log("init overview view");
+          this.render();
+          var tableView = new ItemsView({el: this.el});
+          tableView.render();
+        }
+      });
+
 
 
       // List View for all items
-      var SimpleItemsView = Backbone.View.extend({
-        el: $("#overview"),
+      var ItemsView = Backbone.View.extend({
         tagName: "tbody",
 
         initialize: function () {
-          console.log('init view');
+          console.log('init items view');
           var _this = this;
-          this.collection = new SimpleItemCollection();
+          this.collection = new ItemCollection();
           this.collection.bind("reset",function(){
             _this.render();
           });
@@ -124,7 +139,7 @@ define([
         },
 
         renderItem: function (item) {
-          var itemView = new SimpleItemView({
+          var itemView = new ItemView({
             model: item
           });
           this.el.append(itemView.render().el);
