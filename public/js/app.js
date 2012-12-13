@@ -155,6 +155,14 @@ define([
         },
         initialize: function() {
           this.render();
+        },
+        events: {
+          "submit": "submit"
+        },
+        submit: function(event) {
+          event.preventDefault();
+          console.log("submit add item", this.$("#name").val());
+
         }
 
       });
