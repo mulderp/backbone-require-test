@@ -2,7 +2,7 @@ describe("Basic view test", function() {
 
   var view;
 
-  requireDependencies(["backbone"], function(Backbone) {
+  requireDependencies(["underscore", "backbone"], function(_, Backbone) {
     view = Backbone.View.extend({el: "li" });
   });
   
