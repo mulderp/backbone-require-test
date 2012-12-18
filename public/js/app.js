@@ -33,7 +33,9 @@ define([
 
         showAddForm: function() {
           $("#maincontent").html('');
-          var addItemForm = new AddItemForm();
+          var sidebar = new SidebarView();
+          var items = new ItemCollection();
+          var addItemForm = new AddItemForm({collection: items});
         }
       });
 
@@ -55,12 +57,10 @@ define([
         }
       });
 
-
-
       // Collection
       var ItemCollection = Backbone.Collection.extend({
         model: Item,
-        url: 'data/items.json',
+        url: 'http://localhost:9000/items.json',
         parse: function(response) {
           return response;
         }
@@ -161,6 +161,10 @@ define([
         },
         submit: function(event) {
           event.preventDefault();
+          this.collection.create({
+            name: this.$("#name").val()
+          });
+
           console.log("submit add item", this.$("#name").val());
 
         }
