@@ -3,25 +3,9 @@
   <head>
     <title>Jasmine Test Runner</title>
     <link rel="stylesheet" type="text/css" href="lib/jasmine.css"/>
-    <script type="text/javascript" src="lib/jasmine.js"></script>
-    <script type="text/javascript" src="lib/jasmine-html.js"></script>
-    <script type="text/javascript" src="lib/jasmine-jquery.js"></script>
-
-    <script type="text/javascript" src="lib/requireHelper.js"></script>
-    <script type="text/javascript" src="../public/js/libs/require/require.js"></script>
-
-    <script type="text/javascript" src="itemViewSpec.js"></script>
+    <script src="./../public/js/libs/require/require.js" data-main="specrunner"></script>
   </head>
   <body>
-    <div id="lab"></div>
-
-    <script type="text/javascript">
-      // This has to be a global.
-      require.config({baseUrl: "."});
-      require(["main"], function() {
-          jasmine.getEnv().addReporter(new jasmine.TrivialReporter());
-          jasmine.getEnv().execute();
-      });
-    </script>
+    <div id="sandbox"></div>
   </body>
 </html>

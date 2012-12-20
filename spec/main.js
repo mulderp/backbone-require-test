@@ -4,7 +4,8 @@ require.config({
 		jquery: '../public/js/libs/jquery/jquery',
 		underscore: '../public/js/libs/underscore/underscore',
 		backbone: '../public/js/libs/backbone/backbone-min',
-		text: 'libs/require/text'
+        text: '../public/js/libs/require/text',
+        itemTemplate: '../public/js/templates/simpleItem.html'
 	},
 
 	shim: {
