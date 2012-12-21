@@ -3,10 +3,11 @@ define([
   'underscore',
   'backbone',
   'views/sidebar_view',
+  'views/about_view',
   'text!../templates/simpleItem.html',
   'text!../templates/addItem.html',
   'text!../templates/overview.html'
-  ], function($, _, Backbone, SidebarView, simpleItemTemplate, addItemTemplate, overviewTemplate) {
+  ], function($, _, Backbone, SidebarView, AboutView, simpleItemTemplate, addItemTemplate, overviewTemplate) {
 
     var initialize = function() {
 
@@ -21,8 +22,9 @@ define([
         },
 
         showDashboard: function() {
-          console.log('show dashboard');
-          $("#maincontent").html('<h1>Dashboard</h1>');
+          console.log('show about');
+          var aboutView = new AboutView();
+          aboutView.render();
         },
 
         showMainpage: function() {
@@ -38,8 +40,6 @@ define([
           var addItemForm = new AddItemForm({collection: items});
         }
       });
-
-
 
       // Models
       var Item = Backbone.Model.extend({
