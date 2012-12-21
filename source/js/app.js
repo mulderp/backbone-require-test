@@ -2,11 +2,11 @@ define([
   'jquery',
   'underscore',
   'backbone',
-  'text!../templates/sidebar.html',
+  'views/sidebar_view',
   'text!../templates/simpleItem.html',
   'text!../templates/addItem.html',
   'text!../templates/overview.html'
-  ], function($, _, Backbone, sidebarTemplate, simpleItemTemplate, addItemTemplate, overviewTemplate) {
+  ], function($, _, Backbone, SidebarView, simpleItemTemplate, addItemTemplate, overviewTemplate) {
 
     var initialize = function() {
 
@@ -67,20 +67,6 @@ define([
       });
 
 
-      var SidebarView = Backbone.View.extend({
-        el: $("#sidebar"),
-        className: "sidebar",
-        template: sidebarTemplate,
-        render: function() {
-          var tmpl = _.template(this.template);
-          $(this.el).empty();
-          $(this.el).append(tmpl);
-          return this;
-        },
-        initialize: function() {
-          this.render();
-        }
-      });
 
       // Item View for single item
       var ItemView = Backbone.View.extend({

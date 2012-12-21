@@ -2,7 +2,7 @@ require.config({
 	paths: {
 		jquery: '../public/js/libs/jquery/jquery',
 		underscore: '../public/js/libs/underscore/underscore',
-		backbone: '../public/js/libs/backbone/backbone-min',
+		backbone: '../public/js/libs/backbone/backbone',
         text: '../public/js/libs/require/text',
         jasmine: './lib/jasmine',
           'jasmine-html': './lib/jasmine-html',

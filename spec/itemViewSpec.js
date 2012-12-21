@@ -1,13 +1,15 @@
 describe("Basic view test", function() {
 
+  var view;
+
   beforeEach(function() {
     var flag=false, that = this, viewElSelector='#testElemId';
 
     require(['../public/views/simpleItemView', 'text!../public/templates/simpleItem.html'], function(VCardView, itemTemplate) {
       jasmine.getFixtures().fixturesPath = 'fixtures';
       loadFixtures('sandbox.html');
-      that.view = new VCardView({
-        el: $("#elemId"),
+      view = new VCardView({
+        el: $("#newelemId"),
         template: itemTemplate
       });
       flag = true;
@@ -36,9 +38,8 @@ describe("Basic view test", function() {
   });
 
   it("renders with content", function() {
-    this.view.render();
-    expect(this.view.$el.selector).toBe("li");
-//    expect(view.render().el).toContain("test");
+    expect(view.render().el).toBe("li");
+    expect(this.view.render().el).toContain("test");
   });
 
 });
