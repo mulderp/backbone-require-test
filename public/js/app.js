@@ -60,7 +60,8 @@ define([
       // Collection
       var ItemCollection = Backbone.Collection.extend({
         model: Item,
-        url: 'http://localhost:9000/items.json',
+        //url: 'http://localhost:9000/items.json',
+        url: '/data/items.json',
         parse: function(response) {
           return response;
         }
