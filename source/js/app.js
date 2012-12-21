@@ -4,10 +4,10 @@ define([
   'backbone',
   'views/sidebar_view',
   'views/about_view',
+  'views/overview_view',
   'text!../templates/simpleItem.html',
-  'text!../templates/addItem.html',
-  'text!../templates/overview.html'
-  ], function($, _, Backbone, SidebarView, AboutView, simpleItemTemplate, addItemTemplate, overviewTemplate) {
+  'text!../templates/addItem.html'
+  ], function($, _, Backbone, SidebarView, AboutView, OverviewView, simpleItemTemplate, addItemTemplate, overviewTemplate) {
 
     var initialize = function() {
 
@@ -30,7 +30,7 @@ define([
         showMainpage: function() {
           console.log('show mainpage');
           var sidebar = new SidebarView();
-          var items = new OverviewView()
+          var items = new OverviewView({collection: new ItemCollection()});
         },
 
         showAddForm: function() {
@@ -67,72 +67,7 @@ define([
         }
       });
 
-
-
       // Item View for single item
-      var ItemView = Backbone.View.extend({
-        tagName: "tr",
-        template: simpleItemTemplate,
-
-        render: function () {
-          var tmpl = _.template(this.template);
-          $(this.el).html(tmpl(this.model.toJSON()));
-          return this;
-        }
-      });
-
-      var OverviewView = Backbone.View.extend({
-        el: $("#maincontent"),
-        template: overviewTemplate,
-        render: function() {
-          var tmpl = _.template(this.template);
-          $(this.el).empty();
-          $(this.el).append(tmpl);
-          return this;
-        },
-        initialize: function() {
-          console.log("init overview view");
-          this.render();
-          var tableView = new ItemsView({el: this.el});
-          tableView.render();
-        }
-      });
-
-
-
-      // List View for all items
-      var ItemsView = Backbone.View.extend({
-        tagName: "tbody",
-
-        initialize: function () {
-          console.log('init items view');
-          var _this = this;
-          this.collection = new ItemCollection();
-          this.collection.bind("reset",function(){
-            _this.render();
-          });
-          this.collection.fetch();
-        },
-
-        render: function () {
-          console.log('render list view');
-          console.log(this.collection);
-
-          var _this = this;
-          _.each(this.collection.models, function (item) {
-            console.log(item);
-            _this.renderItem(item);
-          }, this);
-        },
-
-        renderItem: function (item) {
-          var itemView = new ItemView({
-            model: item
-          });
-          this.el.append(itemView.render().el);
-        }
-      });
-
       var AddItemForm = Backbone.View.extend({
         el: $("#maincontent"),
         template: addItemTemplate,
