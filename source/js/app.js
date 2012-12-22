@@ -30,7 +30,8 @@ define([
         showMainpage: function() {
           console.log('show mainpage');
           var sidebar = new SidebarView();
-          var items = new OverviewView({collection: new ItemCollection()});
+          var items = new ItemCollection();
+          var mainview = new OverviewView({collection: items});
         },
 
         showAddForm: function() {
@@ -88,7 +89,6 @@ define([
           });
 
           console.log("submit add item", this.$("#name").val());
-
         }
 
       });

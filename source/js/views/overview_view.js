@@ -21,10 +21,10 @@ function (_, Backbone, ItemCollection, simpleItemTemplate, overviewTemplate) {
       var ItemsView = Backbone.View.extend({
         tagName: "tbody",
 
-        initialize: function () {
+        initialize: function (args) {
           console.log('init items view');
           var _this = this;
-//          this.collection = new ItemCollection();
+          console.log(args);
           this.collection.bind("reset",function(){
             _this.render();
           });
@@ -46,7 +46,7 @@ function (_, Backbone, ItemCollection, simpleItemTemplate, overviewTemplate) {
           var itemView = new ItemView({
             model: item
           });
-          this.el.append(itemView.render().el);
+          $(this.el).append(itemView.render().el);
         }
       });
 
@@ -62,7 +62,7 @@ function (_, Backbone, ItemCollection, simpleItemTemplate, overviewTemplate) {
      initialize: function() {
        console.log("init overview view");
        this.render();
-       var tableView = new ItemsView({el: this.el});
+       var tableView = new ItemsView({el: this.el, collection: this.collection});
        tableView.render();
      }
    });
