@@ -10,8 +10,9 @@ input "source" do
     concat "css/main.css"
   end
 
-  match "css/*.sass" do
+  match "sass/*.sass" do
     sass
+    concat "css/main.css"
   end
 
   match "js/**/*.js" do

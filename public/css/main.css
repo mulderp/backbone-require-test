@@ -1,74 +1,65 @@
+/* line 1, /Users/pmu/projects/frontend/backbone-require-test/source/sass/main.css.sass */
 body {
+  background-color: #fafafa;
+  font-family: helvetica;
 }
 
+/* line 5, /Users/pmu/projects/frontend/backbone-require-test/source/sass/main.css.sass */
+ul, ol {
+  list-style: none;
+}
+
+/* line 8, /Users/pmu/projects/frontend/backbone-require-test/source/sass/main.css.sass */
+a {
+  text-decoration: none;
+  font-weight: bold;
+}
+
+/* line 13, /Users/pmu/projects/frontend/backbone-require-test/source/sass/main.css.sass */
+header {
+  background-color: #d0d0d0;
+  border: 1px black solid;
+  width: 800px;
+  margin: 0 auto;
+  height: 80px;
+  padding: 10px;
+  margin-bottom: 20px;
+}
+/* line 22, /Users/pmu/projects/frontend/backbone-require-test/source/sass/main.css.sass */
+header h1 {
+  width: 400px;
+  float: left;
+}
+/* line 26, /Users/pmu/projects/frontend/backbone-require-test/source/sass/main.css.sass */
+header nav {
+  width: 80px;
+  float: right;
+  display: inline;
+}
+
+/* line 31, /Users/pmu/projects/frontend/backbone-require-test/source/sass/main.css.sass */
+#sidebar {
+  background-color: white;
+  border: 1px black solid;
+  width: 200px;
+  float: left;
+}
+
+/* line 37, /Users/pmu/projects/frontend/backbone-require-test/source/sass/main.css.sass */
 #maincontent {
-    padding: 50px 0 0;
+  margin: 0 auto 0;
+  padding: 10px;
+  width: 600px;
+  border: 1px black solid;
+  background-color: white;
 }
 
-.item-item-container {
-    border-radius: 3px 3px 3px 3px;
-    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.6);
-    height: 194px;
-    padding: 20px;
-    margin: 10px;
-    float: left;
-    position: relative;
-    width: 218px;
+/* line 44, /Users/pmu/projects/frontend/backbone-require-test/source/sass/main.css.sass */
+tr {
+  border-bottom: 1px gray solid;
 }
 
-.mod-header {
-    height: 60px;
-}
-
-.mod-header h1 {
-    float: left;
-}
-
-.mod-header nav {
-    float: right;
-}
-
-.layout-wrap {
-    margin: 0 auto;
-    max-width: 90%;
-}
-
-.project_counter span {
-    color: white;
-    font-size: 1.1rem;
-    font-weight: 700;
-    margin-left: 1.3rem;
-    padding: 0;
-    position: absolute;
-    right: 0.5rem;
-    text-align: center;
-    top: 0.5rem;
-}
-
-.profile_images {
-    margin: 0 0 0 -55px;
-}
-
-.profile_images img {
-    border-radius: 0 2px 0 0;
-    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.6);
-    height: 100px;
-    width: 93px;
-}
-
-.profile_images li {
-    padding-left: 20px;
-    float: left;
-    position: relative;
-}
-
-.creative_name {
-    color: #444444;
-    font-size: 1.8rem;
-    text-decoration: none;
-    text-shadow: 0 1px 0 rgba(0, 0, 0, 0.17);
-}
-
-ol, ul {
-    list-style: none outside none;
+/* line 46, /Users/pmu/projects/frontend/backbone-require-test/source/sass/main.css.sass */
+td {
+  width: 100px;
 }
