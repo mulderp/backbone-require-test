@@ -5,9 +5,10 @@ define([
   'views/sidebar_view',
   'views/about_view',
   'views/overview_view',
+  'views/show_project',
   'text!../templates/simpleItem.html',
   'text!../templates/addItem.html'
-  ], function($, _, Backbone, SidebarView, AboutView, OverviewView, simpleItemTemplate, addItemTemplate, overviewTemplate) {
+  ], function($, _, Backbone, SidebarView, AboutView, OverviewView, ShowItemView, simpleItemTemplate, addItemTemplate, overviewTemplate) {
 
     var initialize = function() {
 
@@ -36,7 +37,6 @@ define([
         },
 
         showAddForm: function() {
-          $("#maincontent").html('');
           var sidebar = new SidebarView();
           var items = new ItemCollection();
           var addItemForm = new AddItemForm({collection: items});
@@ -45,6 +45,9 @@ define([
         showProject: function(id) {
           console.log("*** #{id}");
           console.log(id);
+          var sidebar = new SidebarView();
+          var showView = new ShowItemView({el: $("#maincontent")});
+          showView.render();
         }
       });
 
