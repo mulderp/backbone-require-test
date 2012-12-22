@@ -16,12 +16,13 @@ define([
       // Router
       var AppRouter = Backbone.Router.extend({
         routes: {
-          'dashboard': 'showDashboard', // matches http://example.com/#dashboard
+          'about': 'showAbout', // matches http://example.com/#dashboard
           'new': 'showAddForm',
+          'projects/:id': 'showProject',
           '*actions': 'showMainpage'
         },
 
-        showDashboard: function() {
+        showAbout: function() {
           console.log('show about');
           var aboutView = new AboutView();
           aboutView.render();
@@ -39,6 +40,11 @@ define([
           var sidebar = new SidebarView();
           var items = new ItemCollection();
           var addItemForm = new AddItemForm({collection: items});
+        },
+
+        showProject: function(id) {
+          console.log("*** #{id}");
+          console.log(id);
         }
       });
 
